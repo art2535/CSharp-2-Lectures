@@ -1,0 +1,86 @@
+﻿<Page x:Class="ShopWpfApp_C224.PageAllProducts"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShopWpfApp_C224"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:ClassLib="clr-namespace:ShopClassLibrary_C224;assembly=ShopClassLibrary1"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageAllProducts">
+    <Page.Resources>
+        <ObjectDataProvider x:Key="dataCategory" MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="ClassLib:Categories"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="dataUnit" MethodName="GetValues"
+                    ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="ClassLib:Units"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Page.Resources>
+    <StackPanel Background="LightYellow">
+        <ToolBar>
+            <ComboBox Name="comboFilterCategory"
+                      SelectionChanged="comboFilterCategory_SelectionChanged"/>
+            <TextBox Name="textFilterName" Width="100"
+                     TextChanged="textFilterName_TextChanged"/>
+        </ToolBar>
+        <DataGrid Name="GridAllProducts" AutoGenerateColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False"
+                  IsReadOnly="True" ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Название"
+                                    Binding="{Binding Name}" Width="5*"/>
+                <DataGridComboBoxColumn Header="Категория"
+                                        SelectedItemBinding="{Binding Category}"
+                                        ItemsSource="{Binding Source={StaticResource dataCategory}}"/>
+                <DataGridTextColumn Header="Цена"
+                                    Binding="{Binding PriceRub}" Width="3*"/>
+                <DataGridTextColumn Header="Количество"
+                                    Binding="{Binding Count}" Width="3*"/>
+                <DataGridComboBoxColumn Header="Ед.измерения"
+                                        SelectedItemBinding="{Binding Unit}"
+                                        ItemsSource="{Binding Source={StaticResource dataUnit}}"/>
+                <DataGridCheckBoxColumn Header="Доставка"
+                                    Binding="{Binding Delivery}" Width="2*"/>
+                <DataGridTemplateColumn Header="Дата" Width="5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Receiptdate}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Описание"
+                                    Binding="{Binding Description}" Width="10*"/>
+                <DataGridTemplateColumn Header="Фото" Width="5*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImagePath}" Width="100"
+                                   Height="100"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <Button Name="buttonEditProduct" Content="Изменить"
+                                        Click="buttonEditProduct_Click"/>
+                                <Button Name="buttonDeleteProduct" Content="Удалить"
+                                        Click="buttonDeleteProduct_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>

@@ -1,0 +1,71 @@
+﻿<Window x:Class="ShopWpfApp_C224.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShopWpfApp_C224"
+        mc:Ignorable="d"
+        Title="Магазин электроники" Height="600" Width="670">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <Image Source="Images/логотип 2.jpg" DockPanel.Dock="Left" Width="80"/>
+            <Button Name="buttonOrder" DockPanel.Dock="Right" Width="80">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Images/корзина.jpg" Width="30"/>
+                    <TextBlock Text="Корзина" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <TextBlock Text="Магазин электроники группы С224"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="24"
+                FontWeight="Black"
+                Foreground="Blue" TextWrapping="Wrap"/>
+        </DockPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0">
+            <Button Name="buttonAllProduct" Content="Все товары"
+                    Click="buttonAllProduct_Click"/>
+            <Button Name="buttonAddProduct" Content="Добавить"
+                    Click="buttonAddProduct_Click"/>
+            <Label/>
+            <Button Name="buttonLoadFromTxt" Content="Загрузить txt"
+                    Click="buttonLoadFromTxt_Click"/>
+            <Button Name="buttonSaveToTxt" Content="Сохранить txt"
+                    Click="buttonSaveToTxt_Click"/>
+            <Label/>
+            <Button Name="buttonLoadFromXml" Content="Загрузить XML"
+                    Click="buttonLoadFromXml_Click"/>
+            <Button Name="buttonSaveToXml" Content="Сохранить XML"
+                    Click="buttonSaveToXml_Click"/>
+            <Label/>
+            <Button Name="buttonLoadFromXmlSer" Content="Загрузить XML2"
+                    Click="buttonLoadFromXmlSer_Click"/>
+            <Button Name="buttonSaveToXmlSer" Content="Сохранить XML2"
+                    Click="buttonSaveToXmlSer_Click"/>
+            <Label/>
+            <Button Name="buttonLoadFromJson" Content="Загрузить JSON"
+                    Click="buttonLoadFromJson_Click"/>
+            <Button Name="buttonSaveToJson" Content="Сохранить JSON"
+                    Click="buttonSaveToJson_Click"/>
+            <Label/>
+            <Button Name="buttonSaveToExcel" Content="Сохранить Excel"
+                    Click="buttonSaveToExcel_Click"/>
+            <Button Name="buttonSaveToWord" Content="Сохранить Word"
+                    Click="buttonSaveToWord_Click"/>
+            <Button Content="Отчет по складу"/>
+            <Label/>
+            <Label/>
+            <Button Content="Выход"/>
+        </StackPanel>
+        <Frame Name="MainFraim" Grid.Row="2" Grid.Column="1"/>
+    </Grid>
+</Window>
